@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  posgtes:
+    image: postgres:16.2-alpine3.19
+    container_name: template-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: template
+      POSTGRES_PASSWORD: 44rPLBESwbkU06FqiSgncdWK
+      POSTGRES_DB: template
+    volumes:
+      - template-postgres-data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+volumes:
+  template-postgres-data:
+    name: template-postgres-data
